@@ -1,0 +1,7 @@
+{
+  "name": "tm-index",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
