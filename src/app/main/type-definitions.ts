@@ -18,7 +18,7 @@ export enum TvSeriesStatus {
   ended = 'ENDED',
   returning = 'RETURNING',
   canceled = 'CANCELED',
-  miniSeries = 'MINI_SERIES',
+  miniSeries = 'MINI SERIES',
 }
 
 export interface Movie {
