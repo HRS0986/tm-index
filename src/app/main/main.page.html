@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-searchbar showCancelButton="never" animated [style]="{'margin-top': '5px'}"></ion-searchbar>
+    <ion-searchbar (ionCancel)="onMenuIconClick()" cancel-button-icon="menu" showCancelButton="always" animated [style]="{'margin-top': '5px'}">
+    </ion-searchbar>
     <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tab">
       <ion-segment-button value="MOVIES">
         Movies
@@ -12,7 +13,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ng-template [ngIf]="tab === 'MOVIES'" [ngIfElse]="elseBlock">
     <app-movies></app-movies>
   </ng-template>
@@ -25,5 +31,6 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
 </ion-content>
 

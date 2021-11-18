@@ -20,4 +20,17 @@ export class MainPage implements OnInit {
     console.log(this.tab);
   }
 
+  onMenuIconClick(){
+    alert('Menu Icon Clicked');
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
 }
