@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Add New Movie</ion-title>
+    <ion-button slot="end" fill="clear" color="light" [routerLink]="['/app']">Cancel</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ng-form>
+        <ion-item>
+          <ion-label position="stacked">Title</ion-label>
+          <ion-input type="text" required placeholder="Enter Movie Title"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Year</ion-label>
+          <ion-input type="number" required placeholder="Enter Movie Released Year"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-radio-group value="WATCHED">
+            <ion-list-header>
+              <ion-label>Watched Status</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Watched</ion-label>
+              <ion-radio slot="start" value="WATCHED"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Unwatched</ion-label>
+              <ion-radio slot="start" value="UNWATCHED"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-item>
+
+        <ion-row class="ion-padding-top ion-margin-top">
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-button color="primary" type="submit" expand="block">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ng-form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -14,6 +14,8 @@ export enum TvSeriesWatchedStatus {
   watching = 'WATCHING',
 }
 
+export const TV_SERIES_STATUS_LIST = ['ENDED', 'RETURNING', 'CANCELED', 'MINI SERIES'];
+
 export enum TvSeriesStatus {
   ended = 'ENDED',
   returning = 'RETURNING',

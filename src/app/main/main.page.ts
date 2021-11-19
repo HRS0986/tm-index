@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Tabs } from './type-definitions';
+import {Component, OnInit} from '@angular/core';
+import {Tabs} from './type-definitions';
 
 @Component({
   selector: 'app-main',
