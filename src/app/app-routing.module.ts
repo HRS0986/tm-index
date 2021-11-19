@@ -4,11 +4,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'app',
     pathMatch: 'full'
   },
   {
-    path: 'main',
+    path: 'app',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   }
 ];
