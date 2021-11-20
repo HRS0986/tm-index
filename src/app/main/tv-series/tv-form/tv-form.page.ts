@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieWatchedStatus, Tabs, TV_SERIES_STATUS_LIST, TvSeriesStatus, Modes } from '../../type-definitions';
+import { MovieWatchedStatus, Tabs, TV_SERIES_STATUS_LIST, TvSeriesStatus, Modes, TV_COLOR } from '../../type-definitions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -15,6 +15,7 @@ export class TvFormPage implements OnInit {
   isSubmitted = false;
   mode: string;
   modes = Modes;
+  color = TV_COLOR;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 

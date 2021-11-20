@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MovieWatchedStatus, Tabs, Modes } from '../../type-definitions';
+import { MovieWatchedStatus, Tabs, Modes, MOVIE_COLOR } from '../../type-definitions';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,6 +14,7 @@ export class MovieFormPage implements OnInit {
   isSubmitted = false;
   mode: string;
   modes = Modes;
+  color = MOVIE_COLOR;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 

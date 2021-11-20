@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tabs, Modes } from './type-definitions';
+import { Tabs, Modes, MOVIE_COLOR, TV_COLOR } from './type-definitions';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,11 +12,13 @@ export class MainPage implements OnInit {
 
   tab = Tabs.movies;
   modes = Modes;
+  color: string;
 
   constructor(private toastController: ToastController, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.color = this.tab === Tabs.movies ? MOVIE_COLOR : TV_COLOR;
     this.route.queryParams.subscribe(params => {
       if (params.type === Tabs.movies || params.type === Tabs.tv) {
         this.presentToast(params.type).then();
@@ -26,7 +28,7 @@ export class MainPage implements OnInit {
 
   segmentChanged(ev: any) {
     this.tab = ev.detail.value;
-    console.log(this.tab);
+    this.color = this.tab === Tabs.movies ? MOVIE_COLOR : TV_COLOR;
   }
 
   onMenuIconClick() {

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar [color]="color">
     <ion-title>
       {{mode === modes.edit ? 'Edit Tv Series Detail' : 'Add New Tv Series'}}
     </ion-title>
@@ -68,7 +68,7 @@
 
             <ion-row class="ion-padding-top ion-margin-top">
               <ion-col size-sm="6" offset-sm="3">
-                <ion-button color="primary" type="submit" expand="block">
+                <ion-button [color]="color" type="submit" expand="block">
                   Add
                 </ion-button>
               </ion-col>

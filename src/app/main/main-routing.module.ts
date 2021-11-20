@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'tv-form',
     loadChildren: () => import('./tv-series/tv-form/tv-form.module').then( m => m.TvFormPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
 ];
 

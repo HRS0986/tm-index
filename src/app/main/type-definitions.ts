@@ -43,3 +43,6 @@ export interface TvSeries {
   status: TvSeriesStatus;
   watchedStatus: TvSeriesWatchedStatus;
 }
+
+export const MOVIE_COLOR = 'primary';
+export const TV_COLOR = 'tertiary';
