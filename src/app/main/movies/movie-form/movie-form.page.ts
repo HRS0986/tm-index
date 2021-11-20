@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MovieWatchedStatus } from '../../type-definitions';
-
-
+import {MovieWatchedStatus, Tabs} from '../../type-definitions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-form',
@@ -14,7 +13,7 @@ export class MovieFormPage implements OnInit {
   movieForm: FormGroup;
   isSubmitted = false;
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.movieForm = this.formBuilder.group({
@@ -35,6 +34,7 @@ export class MovieFormPage implements OnInit {
       return false;
     } else {
       console.log(this.movieForm.value);
+      this.router.navigate(['/app'], { queryParams: { type: Tabs.movies } }).then();
     }
   }
 }

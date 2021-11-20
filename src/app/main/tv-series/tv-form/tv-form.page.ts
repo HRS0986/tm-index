@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieWatchedStatus, TV_SERIES_STATUS_LIST, TvSeriesStatus } from '../../type-definitions';
+import {MovieWatchedStatus, Tabs, TV_SERIES_STATUS_LIST, TvSeriesStatus} from '../../type-definitions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tv-form',
@@ -13,7 +14,7 @@ export class TvFormPage implements OnInit {
   tvForm: FormGroup;
   isSubmitted = false;
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.tvForm = this.formBuilder.group({
@@ -36,6 +37,7 @@ export class TvFormPage implements OnInit {
       return false;
     } else {
       console.log(this.tvForm.value);
+      this.router.navigate(['/app'], { queryParams: { type: Tabs.tv } }).then();
     }
   }
 
