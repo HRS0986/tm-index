@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Tabs} from './type-definitions';
+import { Component, OnInit } from '@angular/core';
+import { Tabs, Modes, MOVIE_COLOR, TV_COLOR } from './type-definitions';
+import { ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -9,18 +11,27 @@ import {Tabs} from './type-definitions';
 export class MainPage implements OnInit {
 
   tab = Tabs.movies;
+  modes = Modes;
+  color: string;
 
-  constructor() { }
+  constructor(private toastController: ToastController, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.color = this.tab === Tabs.movies ? MOVIE_COLOR : TV_COLOR;
+    this.route.queryParams.subscribe(params => {
+      if (params.type === Tabs.movies || params.type === Tabs.tv) {
+        this.presentToast(params.type).then();
+      }
+    });
   }
 
   segmentChanged(ev: any) {
     this.tab = ev.detail.value;
-    console.log(this.tab);
+    this.color = this.tab === Tabs.movies ? MOVIE_COLOR : TV_COLOR;
   }
 
-  onMenuIconClick(){
+  onMenuIconClick() {
     alert('Menu Icon Clicked');
   }
 
@@ -31,6 +42,15 @@ export class MainPage implements OnInit {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
+  }
+
+  async presentToast(msgType: string) {
+    const messageText = msgType === Tabs.movies ? 'Movie Saved Successfully' : 'Tv Series Saved Successfully';
+    const toast = await this.toastController.create({
+      message: messageText,
+      duration: 2000
+    });
+    await toast.present();
   }
 
 }

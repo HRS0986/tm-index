@@ -3,6 +3,11 @@ export enum Tabs {
   tv = 'TV'
 }
 
+export enum Modes {
+  edit = 'EDIT',
+  create = 'CREATE'
+}
+
 export enum MovieWatchedStatus {
   watched = 'WATCHED',
   unWatched = 'UNWATCHED',
@@ -38,3 +43,6 @@ export interface TvSeries {
   status: TvSeriesStatus;
   watchedStatus: TvSeriesWatchedStatus;
 }
+
+export const MOVIE_COLOR = 'primary';
+export const TV_COLOR = 'tertiary';
