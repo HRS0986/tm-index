@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TvSeries } from '../../type-definitions';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tv-card',
@@ -9,7 +10,31 @@ import { TvSeries } from '../../type-definitions';
 export class TvCardComponent implements OnInit {
 
   @Input() tvShow: TvSeries;
-  constructor() { }
+  constructor(private alertController: AlertController) { }
+
+  async presentAlertDeleteConfirm(tvSeries: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Delete Tv Series',
+      message: `Do you want to delete ${tvSeries}?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => false
+        }, {
+          text: 'Delete',
+          cssClass: 'danger',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
   ngOnInit() {}
 
