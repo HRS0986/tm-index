@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MovieWatchedStatus, Tabs, TV_SERIES_STATUS_LIST, TvSeriesStatus} from '../../type-definitions';
+import { MovieWatchedStatus, Tabs, TV_SERIES_STATUS_LIST, TvSeriesStatus, Modes } from '../../type-definitions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tv-form',
@@ -13,10 +13,16 @@ export class TvFormPage implements OnInit {
   tvSeriesStatusList: Array<string> = TV_SERIES_STATUS_LIST;
   tvForm: FormGroup;
   isSubmitted = false;
+  mode: string;
+  modes = Modes;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.mode = params.mode;
+    });
+
     this.tvForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(2)]],
       year: ['', [Validators.required]],

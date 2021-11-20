@@ -16,7 +16,7 @@
         <ion-col size="3">
           <ion-row style="text-align: center">
             <ion-col size="6">
-              <ion-button fill="clear" size="medium" color="warning" style="margin-right: 5px">
+              <ion-button fill="clear" size="medium" color="warning" style="margin-right: 5px" [routerLink]="['/app/movie-form']" [queryParams]="{ mode: modes.edit }">
                 <ion-icon name="create-outline"></ion-icon>
               </ion-button>
             </ion-col>

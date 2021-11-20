@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {MovieWatchedStatus, Tabs} from '../../type-definitions';
-import { Router } from '@angular/router';
+import { MovieWatchedStatus, Tabs, Modes } from '../../type-definitions';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movie-form',
@@ -12,10 +12,16 @@ export class MovieFormPage implements OnInit {
 
   movieForm: FormGroup;
   isSubmitted = false;
+  mode: string;
+  modes = Modes;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.mode = params.mode;
+    });
+
     this.movieForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(2)]],
       year: ['', [Validators.required]],

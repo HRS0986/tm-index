@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tabs } from './type-definitions';
+import { Tabs, Modes } from './type-definitions';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MainPage implements OnInit {
 
   tab = Tabs.movies;
+  modes = Modes;
 
   constructor(private toastController: ToastController, private route: ActivatedRoute) {
   }

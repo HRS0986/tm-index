@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TvSeries } from '../../type-definitions';
+import { TvSeries, Modes } from '../../type-definitions';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -10,6 +10,7 @@ import { AlertController } from '@ionic/angular';
 export class TvCardComponent implements OnInit {
 
   @Input() tvShow: TvSeries;
+  modes = Modes;
   constructor(private alertController: AlertController) { }
 
   async presentAlertDeleteConfirm(tvSeries: string) {

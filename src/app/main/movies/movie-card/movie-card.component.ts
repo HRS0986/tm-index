@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie } from '../../type-definitions';
+import { Movie, Modes } from '../../type-definitions';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -10,6 +10,7 @@ import { AlertController } from '@ionic/angular';
 export class MovieCardComponent implements OnInit {
 
   @Input() movie: Movie;
+  modes = Modes;
   constructor(private alertController: AlertController) { }
 
   async presentAlertDeleteConfirm(movie: string) {

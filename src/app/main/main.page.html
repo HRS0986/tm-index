@@ -33,7 +33,7 @@
   </ion-grid>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="primary" [routerLink]="tab === 'MOVIES' ? ['/app/movie-form'] : ['/app/tv-form']">
+    <ion-fab-button color="primary" [routerLink]="tab === 'MOVIES' ? ['/app/movie-form'] : ['/app/tv-form']" [queryParams]="{ mode: modes.create }">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

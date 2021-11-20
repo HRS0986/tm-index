@@ -3,6 +3,11 @@ export enum Tabs {
   tv = 'TV'
 }
 
+export enum Modes {
+  edit = 'EDIT',
+  create = 'CREATE'
+}
+
 export enum MovieWatchedStatus {
   watched = 'WATCHED',
   unWatched = 'UNWATCHED',
