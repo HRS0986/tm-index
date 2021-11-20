@@ -6,70 +6,75 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-      <ng-form>
-        <ion-item>
-          <ion-label position="stacked">Title</ion-label>
-          <ion-input type="text" required placeholder="Enter Tv Series Title"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Year</ion-label>
-          <ion-input type="number" required placeholder="Enter Tv Series Released Year"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Season Count</ion-label>
-          <ion-input type="number" required placeholder="Enter Tv Series Season Count"></ion-input>
-        </ion-item>
+  <ion-row>
+    <ion-col size-md="10" offset-md="1" size-lg="8" offset-lg="2" size-xl="6" offset-xl="3">
+      <ion-card>
+        <ion-card-content>
+          <form [formGroup]="tvForm" (ngSubmit)="onAddClick()" novalidate>
 
-        <ion-item>
-          <ion-radio-group value="ENDED">
-            <ion-list-header>
+            <ion-item lines="full">
+              <ion-label position="floating">Title</ion-label>
+              <ion-input formControlName="title" type="text"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.title.errors?.required">
+              Title is required.
+            </span>
+
+            <ion-item lines="full">
+              <ion-label position="floating">Year</ion-label>
+              <ion-input formControlName="year" type="number"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.year.errors?.required">
+              Year is required.
+            </span>
+
+            <ion-item lines="full">
+              <ion-label position="floating">Season Count</ion-label>
+              <ion-input formControlName="seasonCount" type="number"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.seasonCount.errors?.required">
+              Season Count is required.
+            </span>
+
+            <ion-item lines="full" style="margin-top: 10px;">
               <ion-label>Tv Series Status</ion-label>
-            </ion-list-header>
-            <ion-item>
-              <ion-label>Ended</ion-label>
-              <ion-radio slot="start" value="ENDED"></ion-radio>
+              <ion-select [value]="tvSeriesStatusList[0]" okText="Okay" cancelText="Cancel" formControlName="status">
+                <ion-select-option *ngFor="let status of tvSeriesStatusList" [value]="status">
+                  {{status | titlecase}}
+                </ion-select-option>
+              </ion-select>
             </ion-item>
-            <ion-item>
-              <ion-label>Returning</ion-label>
-              <ion-radio slot="start" value="RETURNING"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Cancelled</ion-label>
-              <ion-radio slot="start" value="CANCELLED"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Mini Series</ion-label>
-              <ion-radio slot="start" value="MINI SERIES"></ion-radio>
-            </ion-item>
-          </ion-radio-group>
-        </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.status.errors?.required">
+              Season Count is required.
+            </span>
 
-        <ion-item>
-          <ion-radio-group value="WATCHED">
-            <ion-list-header>
-              <ion-label>Watched Status</ion-label>
-            </ion-list-header>
-            <ion-item>
-              <ion-label>Watched</ion-label>
-              <ion-radio slot="start" value="WATCHED"></ion-radio>
+            <ion-item style="margin-top: 10px;">
+              <ion-radio-group value="WATCHED" formControlName="watchedStatus" required>
+                <ion-list-header>
+                  <ion-label>Watched Status</ion-label>
+                </ion-list-header>
+                <ion-item>
+                  <ion-label>Watched</ion-label>
+                  <ion-radio slot="start" value="WATCHED"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Unwatched</ion-label>
+                  <ion-radio slot="start" value="UNWATCHED"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
             </ion-item>
-            <ion-item>
-              <ion-label>Unwatched</ion-label>
-              <ion-radio slot="start" value="UNWATCHED"></ion-radio>
-            </ion-item>
-          </ion-radio-group>
-        </ion-item>
 
-        <ion-row class="ion-padding-top ion-margin-top">
-          <ion-col size-sm="6" offset-sm="3">
-            <ion-button color="primary" type="submit" expand="block">
-              Add
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ng-form>
-    </ion-card-content>
-  </ion-card>
+            <ion-row class="ion-padding-top ion-margin-top">
+              <ion-col size-sm="6" offset-sm="3">
+                <ion-button color="primary" type="submit" expand="block">
+                  Add
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>
