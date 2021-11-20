@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true" color="medium">
+  <ion-grid style="height: 100%">
+    <ion-row style="height: 100%;" class="ion-align-items-center ion-justify-content-center">
+      <ion-col>
+        <ion-card color="light">
+          <ion-card-header class="ion-text-center">
+            <ion-card-title>
+              <ion-text>
+                <h1>Login</h1>
+              </ion-text>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="ion-text-center">
+            <ion-item>
+              <ion-input type="password" placeholder="Enter Password" required=""></ion-input>
+            </ion-item>
+            <ion-button expand="block" class="ion-margin-top ion-margin-bottom">
+              Login
+            </ion-button>
+            <ion-text (click)="forgotPassword()">
+              <a>Forgot Password</a>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
