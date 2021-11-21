@@ -1,7 +1,13 @@
 <ion-header>
   <ion-toolbar [color]="color">
-    <ion-searchbar (ionCancel)="onMenuIconClick()" cancel-button-icon="menu" showCancelButton="always" animated [style]="{'margin-top': '5px'}">
-    </ion-searchbar>
+    <ng-template [ngIf]="isAdmin" [ngIfElse]="elseToolBar">
+      <ion-searchbar (ionCancel)="onMenuIconClick()" cancel-button-icon="menu" showCancelButton="always" animated [style]="{'margin-top': '5px'}">
+      </ion-searchbar>
+    </ng-template>
+    <ng-template #elseToolBar>
+      <ion-searchbar (ionCancel)="onMenuIconClick()" cancel-button-icon="search-outline" showCancelButton="always" animated [style]="{'margin-top': '5px'}">
+      </ion-searchbar>
+    </ng-template>
     <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tab">
       <ion-segment-button value="MOVIES">
         Movies
