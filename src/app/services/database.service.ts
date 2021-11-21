@@ -8,42 +8,42 @@ import {Movie, TvSeries} from '../main/type-definitions';
 })
 export class DatabaseService {
 
-  moviesList: AngularFireList<Movie>;
-  tvSeriesList: AngularFireList<TvSeries>;
-  movie: AngularFireObject<Movie>;
-  tvSeries: AngularFireObject<TvSeries>;
+  private moviesList: AngularFireList<Movie>;
+  private tvSeriesList: AngularFireList<TvSeries>;
+  private movie: AngularFireObject<Movie>;
+  private tvSeries: AngularFireObject<TvSeries>;
 
   constructor(private fireDatabase: AngularFireDatabase) { }
 
-  getMovieById(id: string){
+  public getMovieById(id: string){
     this.movie = this.fireDatabase.object<Movie>(`/movies/${id}`) as AngularFireObject<Movie>;
     return this.movie;
   }
 
-  getTvSeriesById(id: string){
+  public getTvSeriesById(id: string){
     this.tvSeries = this.fireDatabase.object<TvSeries>(`/tvSeries/${id}`) as AngularFireObject<TvSeries>;
     return this.tvSeries;
   }
 
-  getAllMovies() {
+  public getAllMovies() {
     this.moviesList = this.fireDatabase.list<Movie>('/movies') as AngularFireList<Movie>;
     return this.moviesList;
   }
 
-  getAllTvSeries() {
+  public getAllTvSeries() {
     this.tvSeriesList = this.fireDatabase.list('/tvSeries') as AngularFireList<TvSeries>;
     return this.tvSeriesList;
   }
 
-  createMovie(movie: Movie) {
+  public createMovie(movie: Movie) {
     return this.fireDatabase.list('/movies').push(movie);
   }
 
-  createTvSeries(tvSeries: TvSeries) {
+  public createTvSeries(tvSeries: TvSeries) {
     return this.fireDatabase.list('/tvSeries').push(tvSeries);
   }
 
-  updateMovie(movie: Movie) {
+  public updateMovie(movie: Movie) {
     return this.moviesList.update(movie.id, {
       title: movie.title,
       year: movie.year,
@@ -51,15 +51,15 @@ export class DatabaseService {
     });
   }
 
-  updateTvSeries(tvSeries: TvSeries) {
+  public updateTvSeries(tvSeries: TvSeries) {
     return this.tvSeriesList.update(tvSeries.id, tvSeries);
   }
 
-  removeMovie(id: string) {
+  public removeMovie(id: string) {
     return this.moviesList.remove(id);
   }
 
-  removeTvSeries(id: string) {
+  public removeTvSeries(id: string) {
     return this.tvSeriesList.remove(id);
   }
 

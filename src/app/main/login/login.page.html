@@ -12,9 +12,12 @@
           </ion-card-header>
           <ion-card-content class="ion-text-center">
             <ion-item>
-              <ion-input type="password" placeholder="Enter Password" required=""></ion-input>
+              <ion-input type="password" placeholder="Enter Password" [(ngModel)]="password" clear-input></ion-input>
             </ion-item>
-            <ion-button expand="block" class="ion-margin-top ion-margin-bottom">
+            <span class="error ion-padding" *ngIf="showError">
+              Password is required.
+            </span>
+            <ion-button expand="block" class="ion-margin-top ion-margin-bottom" (click)="onClickLogin()">
               Login
             </ion-button>
             <ion-text (click)="forgotPassword()">
