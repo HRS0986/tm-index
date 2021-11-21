@@ -15,13 +15,24 @@ export class DatabaseService {
 
   constructor(private fireDatabase: AngularFireDatabase) { }
 
+  getMovieById(id: string){
+    this.movie = this.fireDatabase.object<Movie>(`/movies/${id}`) as AngularFireObject<Movie>;
+    return this.movie;
+  }
+
+  getTvSeriesById(id: string){
+    this.tvSeries = this.fireDatabase.object<TvSeries>(`/tvSeries/${id}`) as AngularFireObject<TvSeries>;
+    return this.tvSeries;
+  }
+
   getAllMovies() {
     this.moviesList = this.fireDatabase.list<Movie>('/movies') as AngularFireList<Movie>;
     return this.moviesList;
   }
 
   getAllTvSeries() {
-    return this.fireDatabase.list('/tvSeries');
+    this.tvSeriesList = this.fireDatabase.list('/tvSeries') as AngularFireList<TvSeries>;
+    return this.tvSeriesList;
   }
 
   createMovie(movie: Movie) {
@@ -33,19 +44,23 @@ export class DatabaseService {
   }
 
   updateMovie(movie: Movie) {
-    return this.fireDatabase.object('/movies/' + movie.id).update(movie);
+    return this.moviesList.update(movie.id, {
+      title: movie.title,
+      year: movie.year,
+      watchedStatus: movie.watchedStatus,
+    });
   }
 
   updateTvSeries(tvSeries: TvSeries) {
-    return this.fireDatabase.object('/tvSeries/' + tvSeries.id).update(tvSeries);
+    return this.tvSeriesList.update(tvSeries.id, tvSeries);
   }
 
-  removeMovie(movie: Movie) {
-    return this.fireDatabase.object('/movies/' + movie.id).remove();
+  removeMovie(id: string) {
+    return this.moviesList.remove(id);
   }
 
-  removeTvSeries(tvSeries: TvSeries) {
-    return this.fireDatabase.object('/tvSeries/' + tvSeries.id).remove();
+  removeTvSeries(id: string) {
+    return this.tvSeriesList.remove(id);
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Movie, MovieWatchedStatus} from '../type-definitions';
+import { Movie, MOVIE_COLOR } from '../type-definitions';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-movies',
@@ -8,35 +9,23 @@ import {Movie, MovieWatchedStatus} from '../type-definitions';
 })
 export class MoviesComponent implements OnInit {
 
-  movies: Array<Movie> = [
-    {
-      id: 1,
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      watchedStatus: MovieWatchedStatus.unWatched
-    },
-    {
-      id: 2,
-      title: 'The Godfather',
-      year: 1972,
-      watchedStatus: MovieWatchedStatus.watched
-    },
-    {
-      id: 3,
-      title: 'The Godfather: Part II',
-      year: 1974,
-      watchedStatus: MovieWatchedStatus.unWatched
-    },
-    {
-      id: 4,
-      title: 'The Dark Knight',
-      year: 2008,
-      watchedStatus: MovieWatchedStatus.watched
-    },
-  ];
+  movies: Array<Movie>;
+  color = MOVIE_COLOR;
+  loading = false;
 
-  constructor() { }
+  constructor(private databaseService: DatabaseService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loading = true;
+    this.databaseService.getAllMovies().snapshotChanges().subscribe(response => {
+      this.movies = new Array<Movie>();
+      response.forEach(movie => {
+        const movieObject = movie.payload.toJSON();
+        movieObject['id'] = movie.key;
+        this.movies.push(movieObject as Movie);
+      });
+      this.loading = false;
+    });
+  }
 
 }

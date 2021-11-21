@@ -35,15 +35,6 @@ export class MainPage implements OnInit {
     alert('Menu Icon Clicked');
   }
 
-  doRefresh(event) {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-  }
-
   async presentToast(msgType: string) {
     const messageText = msgType === Tabs.movies ? 'Movie Saved Successfully' : 'Tv Series Saved Successfully';
     const toast = await this.toastController.create({
