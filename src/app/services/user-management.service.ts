@@ -19,6 +19,13 @@ export class UserManagementService {
     return this.isLoggedIn;
   }
 
+  public addUser(userCode: string) {
+    this.fireDatabase.list('/users').push({
+      code: userCode,
+      isAdmin: false
+    });
+  }
+
   // @ts-ignore
   public login(password: string): Promise<boolean> {
     const userRef = this.fireDatabase.database.ref('/users');
