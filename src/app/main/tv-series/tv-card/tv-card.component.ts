@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TvSeries, Modes } from '../../type-definitions';
 import { AlertController } from '@ionic/angular';
+import { DatabaseService } from '../../../services/database.service';
+
 
 @Component({
   selector: 'app-tv-card',
@@ -11,7 +13,7 @@ export class TvCardComponent implements OnInit {
 
   @Input() tvShow: TvSeries;
   modes = Modes;
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, private databaseService: DatabaseService) { }
 
   async presentAlertDeleteConfirm(tvSeries: string) {
     const alert = await this.alertController.create({
@@ -28,7 +30,7 @@ export class TvCardComponent implements OnInit {
           text: 'Delete',
           cssClass: 'danger',
           handler: () => {
-            console.log('Confirm Okay');
+            this.databaseService.removeTvSeries(this.tvShow.id);
           }
         }
       ]

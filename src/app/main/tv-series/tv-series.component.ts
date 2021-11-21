@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TvSeries, TvSeriesStatus, TvSeriesWatchedStatus} from '../type-definitions';
+import { TV_COLOR, TvSeries } from '../type-definitions';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-tv-series',
@@ -8,43 +9,23 @@ import {TvSeries, TvSeriesStatus, TvSeriesWatchedStatus} from '../type-definitio
 })
 export class TvSeriesComponent implements OnInit {
 
-  tvShows: Array<TvSeries> = [
-    {
-      id: 1,
-      title: 'Breaking Bad',
-      year: 2008,
-      status: TvSeriesStatus.ended,
-      watchedStatus: TvSeriesWatchedStatus.watched,
-      seasonCount: 5,
-    },
-    {
-      id: 2,
-      title: 'Game of Thrones',
-      year: 2011,
-      status: TvSeriesStatus.returning,
-      watchedStatus: TvSeriesWatchedStatus.watching,
-      seasonCount: 8,
-    },
-    {
-      id: 3,
-      title: 'The Walking Dead',
-      year: 2010,
-      status: TvSeriesStatus.miniSeries,
-      watchedStatus: TvSeriesWatchedStatus.unWatched,
-      seasonCount: 5,
-    },
-    {
-      id: 4,
-      title: 'The Big Bang Theory',
-      year: 2007,
-      status: TvSeriesStatus.canceled,
-      watchedStatus: TvSeriesWatchedStatus.watched,
-      seasonCount: 7,
-    }
-  ];
+  tvShows: Array<TvSeries>;
+  color = TV_COLOR;
+  loading = false;
 
-  constructor() { }
+  constructor(private databaseService: DatabaseService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loading = true;
+    this.databaseService.getAllTvSeries().snapshotChanges().subscribe(response => {
+      this.tvShows = new Array<TvSeries>();
+      response.forEach(tvSeries => {
+        const tvSeriesObject = tvSeries.payload.toJSON();
+        tvSeriesObject['id'] = tvSeries.key;
+        this.tvShows.push(tvSeriesObject as TvSeries);
+      });
+      this.loading = false;
+    });
+  }
 
 }

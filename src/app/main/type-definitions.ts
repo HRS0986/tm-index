@@ -15,7 +15,7 @@ export enum MovieWatchedStatus {
 
 export enum TvSeriesWatchedStatus {
   watched = 'WATCHED',
-  unWatched = 'UNWATCHED',
+  unwatched = 'UNWATCHED',
   watching = 'WATCHING',
 }
 
@@ -29,14 +29,14 @@ export enum TvSeriesStatus {
 }
 
 export interface Movie {
-  id: number;
+  id?: string;
   title: string;
   year: number;
   watchedStatus: MovieWatchedStatus;
 }
 
 export interface TvSeries {
-  id: number;
+  id?: string;
   title: string;
   year: number;
   seasonCount: number;

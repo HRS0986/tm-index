@@ -12,7 +12,7 @@
     <ion-col size-md="10" offset-md="1" size-lg="8" offset-lg="2" size-xl="6" offset-xl="3">
       <ion-card>
         <ion-card-content>
-          <form [formGroup]="tvForm" (ngSubmit)="onAddClick()" novalidate>
+          <form [formGroup]="tvForm" (ngSubmit)="onSubmit()" novalidate>
 
             <ion-item lines="full">
               <ion-label position="floating">Title</ion-label>
@@ -69,7 +69,7 @@
             <ion-row class="ion-padding-top ion-margin-top">
               <ion-col size-sm="6" offset-sm="3">
                 <ion-button [color]="color" type="submit" expand="block">
-                  Add
+                  {{mode === modes.edit ? 'Update' : 'Add'}}
                 </ion-button>
               </ion-col>
             </ion-row>
