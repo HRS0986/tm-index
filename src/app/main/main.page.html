@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar [color]="color">
+    <ng-template [ngIf]="isAdmin" [ngIfElse]="elseToolBar">
+      <ion-searchbar (ionCancel)="onMenuIconClick()" cancel-button-icon="menu" showCancelButton="always" animated [style]="{'margin-top': '5px'}">
+      </ion-searchbar>
+    </ng-template>
+    <ng-template #elseToolBar>
+      <ion-searchbar (ionCancel)="onMenuIconClick()" cancel-button-icon="search-outline" showCancelButton="always" animated [style]="{'margin-top': '5px'}">
+      </ion-searchbar>
+    </ng-template>
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tab">
+      <ion-segment-button value="MOVIES">
+        Movies
+      </ion-segment-button>
+      <ion-segment-button value="TV">
+        TV Series
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="10" offset-md="1" size-lg="8" offset-lg="2" size-xl="6" offset-xl="3">
+        <ng-template [ngIf]="tab === 'MOVIES'" [ngIfElse]="elseBlock">
+          <app-movies></app-movies>
+        </ng-template>
+        <ng-template #elseBlock>
+          <app-tv-series></app-tv-series>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [color]="color" [routerLink]="tab === 'MOVIES' ? ['/app/movie-form'] : ['/app/tv-form']" [queryParams]="{ mode: modes.create }">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+

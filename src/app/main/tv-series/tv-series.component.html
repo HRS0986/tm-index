@@ -1,0 +1,8 @@
+<ng-template [ngIf]="loading" [ngIfElse]="elseBlock">
+  <ion-spinner [color]="color" class="loading-spinner"></ion-spinner>
+</ng-template>
+<ng-template #elseBlock>
+  <ng-template ngFor let-tvShow [ngForOf]="tvShows">
+    <app-tv-card [tvShow]="tvShow"></app-tv-card>
+  </ng-template>
+</ng-template>
