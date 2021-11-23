@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TV_COLOR, TvSeries } from '../type-definitions';
 import { DatabaseService } from '../../services/database.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tv-series',
@@ -13,7 +14,7 @@ export class TvSeriesComponent implements OnInit {
   color = TV_COLOR;
   loading = false;
 
-  constructor(private databaseService: DatabaseService) { }
+  constructor(private databaseService: DatabaseService, private toastController: ToastController) { }
 
   ngOnInit() {
     this.loading = true;
@@ -25,7 +26,18 @@ export class TvSeriesComponent implements OnInit {
         this.tvShows.push(tvSeriesObject as TvSeries);
       });
       this.loading = false;
+      if (this.tvShows.length === 0) {
+        this.presentToast().then();
+      }
     });
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'No tv series in your database',
+      duration: 3000,
+    });
+    await toast.present();
   }
 
 }
