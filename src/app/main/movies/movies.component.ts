@@ -11,6 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class MoviesComponent implements OnInit {
 
   movies: Array<Movie>;
+  allMovies: Array<Movie> = new Array<Movie>();
   color = MOVIE_COLOR;
   loading = false;
 
@@ -38,6 +39,13 @@ export class MoviesComponent implements OnInit {
       duration: 3000,
     });
     await toast.present();
+  }
+
+  onSearch(keyword: string) {
+    if (this.allMovies.length === 0) {
+      this.allMovies = this.movies;
+    }
+    this.movies = this.allMovies.filter(movie => movie.title.toLowerCase().includes(keyword.toLowerCase()));
   }
 
 }

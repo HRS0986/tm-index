@@ -1,7 +1,14 @@
 <ion-header>
   <ion-toolbar [color]="color">
     <ng-template [ngIf]="isAdmin" [ngIfElse]="elseToolBar">
-      <ion-searchbar (ionCancel)="onMenuIconClick()" cancel-button-icon="menu" showCancelButton="always" animated [style]="{'margin-top': '5px'}">
+      <ion-searchbar
+        (ionCancel)="onMenuIconClick()"
+        cancel-button-icon="menu"
+        showCancelButton="always"
+        animated
+        [style]="{'margin-top': '5px'}"
+        (ionChange)="onSearch($event)"
+      >
       </ion-searchbar>
     </ng-template>
     <ng-template #elseToolBar>
