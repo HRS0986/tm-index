@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Tabs, Modes, MOVIE_COLOR, TV_COLOR } from './type-definitions';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { MoviesComponent } from './movies/movies.component';
+import { TvSeriesComponent } from './tv-series/tv-series.component';
 import { AlertController } from '@ionic/angular';
 import { UserManagementService } from '../services/user-management.service';
 
@@ -12,11 +14,15 @@ import { UserManagementService } from '../services/user-management.service';
 })
 export class MainPage implements OnInit {
 
+  @ViewChild(MoviesComponent) moviesComponent: MoviesComponent;
+  @ViewChild(TvSeriesComponent) tvSeriesComponent: TvSeriesComponent;
+
   tab = Tabs.movies;
   modes = Modes;
   color: string;
   isAdmin: boolean;
   cancelledUserAdd: boolean;
+
 
   constructor(
     private toastController: ToastController,
@@ -105,6 +111,14 @@ export class MainPage implements OnInit {
         });
         await toast.present();
       }
+    }
+  }
+
+  onSearch(ev: any) {
+    if (this.tab === Tabs.movies) {
+      this.moviesComponent.onSearch(ev.detail.value);
+    } else if (this.tab === Tabs.tv) {
+      this.tvSeriesComponent.onSearch(ev.detail.value);
     }
   }
 
