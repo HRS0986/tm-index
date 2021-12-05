@@ -8,7 +8,7 @@
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
       <ion-item lines="full">
         <ion-label position="floating">User Code</ion-label>
-        <ion-input type="text" placeholder="User Code" formControlName="userCode"></ion-input>
+        <ion-input type="text" formControlName="userCode"></ion-input>
       </ion-item>
       <span class="error ion-padding" *ngIf="isSubmitted && errorControl.userCode.errors?.required" [style.color]="errorColor">
         User Code is required.
