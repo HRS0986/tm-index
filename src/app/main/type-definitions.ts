@@ -1,6 +1,7 @@
 export enum Tabs {
   movies = 'MOVIES',
-  tv = 'TV'
+  tv = 'TV',
+  settings = 'SETTINGS'
 }
 
 export enum Modes {
@@ -46,3 +47,5 @@ export interface TvSeries {
 
 export const MOVIE_COLOR = 'primary';
 export const TV_COLOR = 'tertiary';
+export const SETTINGS_COLOR = 'medium';
+export const ERROR_COLOR = '#eb445a';

@@ -18,7 +18,7 @@
               <ion-label position="floating">Title</ion-label>
               <ion-input formControlName="title" type="text"></ion-input>
             </ion-item>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.title.errors?.required">
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.title.errors?.required" [style.color]="errorColor">
               Title is required.
             </span>
 
@@ -26,7 +26,7 @@
               <ion-label position="floating">Year</ion-label>
               <ion-input formControlName="year" type="number"></ion-input>
             </ion-item>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.year.errors?.required">
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.year.errors?.required" [style.color]="errorColor">
               Year is required.
             </span>
 
