@@ -26,6 +26,7 @@ export class MoviesComponent implements OnInit {
         movieObject['id'] = movie.key;
         this.movies.push(movieObject as Movie);
       });
+      this.movies.sort((a, b) => a.title.localeCompare(b.title));
       this.loading = false;
       if (this.movies.length === 0) {
         this.presentToast().then();
