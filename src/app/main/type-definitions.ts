@@ -41,6 +41,7 @@ export interface TvSeries {
   title: string;
   year: number;
   seasonCount: number;
+  seasonsHDD: number;
   status: TvSeriesStatus;
   watchedStatus: TvSeriesWatchedStatus;
 }
