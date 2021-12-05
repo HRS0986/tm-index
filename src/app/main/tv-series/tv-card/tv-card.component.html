@@ -1,25 +1,22 @@
-<ion-card>
+<ion-card [class]="tvShow.watchedStatus.toLowerCase() === 'watched' ? 'tv-card-watched':'tv-card-unwatched'">
   <ion-card-header>
-    <ion-card-title>{{tvShow.title}} </ion-card-title>
+    <ion-card-title>{{tvShow.title}} ({{tvShow.year}})</ion-card-title>
   </ion-card-header>
-  <ion-card-content>
+  <ion-card-content style="font-size: 16px !important;">
     <ion-grid>
       <ion-row>
-        <ion-col size="9">
+        <ion-col size-xs="6" size-sm="9">
           <ion-row>
-            Year: {{tvShow.year}}
+            Seasons : {{tvShow.seasonCount}}
           </ion-row>
           <ion-row>
-            Season Count: {{tvShow.seasonCount}}
+            {{tvShow.status | titlecase}}
           </ion-row>
           <ion-row>
-            Watched Status: {{tvShow.watchedStatus | titlecase}}
-          </ion-row>
-          <ion-row>
-            Tv Series Status: {{tvShow.status | titlecase}}
+            {{tvShow.watchedStatus | titlecase}}
           </ion-row>
         </ion-col>
-        <ion-col size="3">
+        <ion-col size-xs="6" size-sm="3">
           <ion-row style="text-align: center">
             <ion-col size="6">
               <ion-button fill="clear" size="medium" color="warning" style="margin-right: 5px" [routerLink]="['/app/tv-form']" [queryParams]="{ mode: modes.edit, id: tvShow.id }">
