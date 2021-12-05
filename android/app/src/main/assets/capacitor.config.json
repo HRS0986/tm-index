@@ -1,0 +1,7 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "MNT Directory",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"launchAutoHide": false
+}

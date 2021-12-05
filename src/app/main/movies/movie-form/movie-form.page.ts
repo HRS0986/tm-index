@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MovieWatchedStatus, Tabs, Modes, MOVIE_COLOR, Movie } from '../../type-definitions';
+import { MovieWatchedStatus, Tabs, Modes, MOVIE_COLOR, Movie, ERROR_COLOR } from '../../type-definitions';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatabaseService } from '../../../services/database.service';
 
@@ -16,6 +16,7 @@ export class MovieFormPage implements OnInit {
   mode: string;
   modes = Modes;
   color = MOVIE_COLOR;
+  errorColor = ERROR_COLOR;
   movieId: string;
   movie: Movie;
 

@@ -1,19 +1,19 @@
-<ion-card>
+<ion-card [class]="movie.watchedStatus.toLowerCase() === 'watched' ? '':'movie-card-unwatched'">
   <ion-card-header>
     <ion-card-title>{{movie.title}} </ion-card-title>
   </ion-card-header>
-  <ion-card-content>
+  <ion-card-content style="font-size: 17px !important;">
     <ion-grid>
       <ion-row>
-        <ion-col size="9">
+        <ion-col size-xs="6" size-sm="9">
           <ion-row>
             Year: {{movie.year}}
           </ion-row>
           <ion-row>
-            Watched Status: {{movie.watchedStatus | titlecase}}
+            {{movie.watchedStatus | titlecase}}
           </ion-row>
         </ion-col>
-        <ion-col size="3">
+        <ion-col size-xs="6" size-sm="3">
           <ion-row style="text-align: center">
             <ion-col size="6">
               <ion-button fill="clear" size="medium" color="warning" style="margin-right: 5px" [routerLink]="['/app/movie-form']" [queryParams]="{ mode: modes.edit, id: movie.id }">

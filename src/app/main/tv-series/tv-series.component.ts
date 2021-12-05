@@ -11,6 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class TvSeriesComponent implements OnInit {
 
   tvShows: Array<TvSeries>;
+  allTvShows: Array<TvSeries> = new Array<TvSeries>();
   color = TV_COLOR;
   loading = false;
 
@@ -25,6 +26,7 @@ export class TvSeriesComponent implements OnInit {
         tvSeriesObject['id'] = tvSeries.key;
         this.tvShows.push(tvSeriesObject as TvSeries);
       });
+      this.tvShows.sort((a, b) => a.title.localeCompare(b.title));
       this.loading = false;
       if (this.tvShows.length === 0) {
         this.presentToast().then();
@@ -38,6 +40,13 @@ export class TvSeriesComponent implements OnInit {
       duration: 3000,
     });
     await toast.present();
+  }
+
+  onSearch(keyword: string) {
+    if (this.allTvShows.length === 0) {
+      this.allTvShows = this.tvShows;
+    }
+    this.tvShows = this.allTvShows.filter(tvShow => tvShow.title.toLowerCase().includes(keyword.toLowerCase()));
   }
 
 }

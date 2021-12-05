@@ -12,16 +12,18 @@ import { TvSeriesComponent } from './tv-series/tv-series.component';
 import { TvCardComponent } from './tv-series/tv-card/tv-card.component';
 import { MovieCardComponent } from './movies/movie-card/movie-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {SettingsPageModule} from './settings/settings.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    MainPageRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        MainPageRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SettingsPageModule
+    ],
   declarations: [MainPage, MoviesComponent, TvSeriesComponent, TvCardComponent, MovieCardComponent]
 })
 export class MainPageModule {}

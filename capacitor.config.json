@@ -1,6 +1,7 @@
 {
 	"appId": "io.ionic.starter",
-	"appName": "tm-index",
+	"appName": "MNT Directory",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+  "launchAutoHide": false
 }
