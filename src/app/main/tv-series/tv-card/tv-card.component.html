@@ -1,4 +1,4 @@
-<ion-card [class]="tvShow.watchedStatus.toLowerCase() === 'watched' ? 'tv-card-watched':'tv-card-unwatched'">
+<ion-card class="tv-card-{{tvShow.watchedStatus.toLowerCase()}}">
   <ion-card-header>
     <ion-card-title>{{tvShow.title}} ({{tvShow.year}})</ion-card-title>
   </ion-card-header>
