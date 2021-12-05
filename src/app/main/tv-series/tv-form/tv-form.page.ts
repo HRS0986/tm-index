@@ -6,6 +6,7 @@ import {
   TvSeriesStatus,
   Modes,
   TV_COLOR,
+  ERROR_COLOR,
   TvSeries,
   TvSeriesWatchedStatus
 } from '../../type-definitions';
@@ -25,6 +26,7 @@ export class TvFormPage implements OnInit {
   mode: string;
   modes = Modes;
   color = TV_COLOR;
+  errorColor = ERROR_COLOR;
   tvSeriesId: string;
   tvSeries: TvSeries;
 
@@ -45,6 +47,7 @@ export class TvFormPage implements OnInit {
       title: ['', [Validators.required, Validators.minLength(2)]],
       year: ['', [Validators.required]],
       seasonCount: ['', [Validators.required]],
+      seasonsHDD: ['', [Validators.required]],
       status: [TvSeriesStatus.ended, [Validators.required]],
       watchedStatus: [TvSeriesWatchedStatus.unwatched]
     });
@@ -57,6 +60,7 @@ export class TvFormPage implements OnInit {
           this.tvForm.controls.year.setValue(this.tvSeries.year);
           this.tvForm.controls.watchedStatus.setValue(this.tvSeries.watchedStatus);
           this.tvForm.controls.seasonCount.setValue(this.tvSeries.seasonCount);
+          this.tvForm.controls.seasonsHDD.setValue(this.tvSeries.seasonsHDD);
           this.tvForm.controls.status.setValue(this.tvSeries.status);
         }
       }
@@ -77,6 +81,7 @@ export class TvFormPage implements OnInit {
         year: this.tvForm.value.year,
         watchedStatus: this.tvForm.value.watchedStatus,
         seasonCount: this.tvForm.value.seasonCount,
+        seasonsHDD: this.tvForm.value.seasonsHDD,
         status: this.tvForm.value.status
       };
       if (this.mode === Modes.edit) {

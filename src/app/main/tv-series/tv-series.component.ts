@@ -26,6 +26,7 @@ export class TvSeriesComponent implements OnInit {
         tvSeriesObject['id'] = tvSeries.key;
         this.tvShows.push(tvSeriesObject as TvSeries);
       });
+      this.tvShows.sort((a, b) => a.title.localeCompare(b.title));
       this.loading = false;
       if (this.tvShows.length === 0) {
         this.presentToast().then();
